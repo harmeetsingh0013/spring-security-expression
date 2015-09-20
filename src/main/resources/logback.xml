@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<contextName>Spring ACL-Sample</contextName>
+
+	<timestamp key="timeFormat" datePattern="yyyyMMdd'T'HHmmss" timeReference="contextBirth" />
+
+	<property resource="properties/logback-variables.properties" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			 <pattern>%d{HH:mm:ss} %contextName [%thread] %-5level %logger{60} [Line-No:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${file-path}/log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${file-path}/log-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>6</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss} %contextName [%thread] %-5level %logger{60} [Line-No:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<logger name="org.springframework.data" level="DEBUG" />
+	<logger name="org.springframework" level="ERROR" />
+	<logger name="org.thymeleaf" level="ERROR" />
+	
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ROLLING" />
+	</root>
+</configuration>
