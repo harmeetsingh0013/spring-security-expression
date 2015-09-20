@@ -25,4 +25,25 @@ public class UserController {
 		
 		return "user/dashboard";
 	}
+	
+	@RequestMapping(value="/section-one", method=RequestMethod.GET)
+	public String sectionOne() {
+		LOG.info("In sectionOne Controller method");
+		
+		return "user/section-one";
+	}
+	
+	@RequestMapping(value="/section-two", method=RequestMethod.GET)
+	public String sectionTwo() {
+		LOG.info("In sectionTwo Controller method");
+		
+		return "user/section-two";
+	}
+	
+	@RequestMapping(value="/section-three", method=RequestMethod.GET)
+	public String sectionThree() {
+		LOG.info("In sectionThree Controller method");
+		
+		return "user/section-three";
+	}
 }

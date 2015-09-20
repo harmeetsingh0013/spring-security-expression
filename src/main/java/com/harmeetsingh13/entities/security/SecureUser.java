@@ -20,11 +20,15 @@ public class SecureUser extends User implements UserDetails {
 	 */
 	private static final long serialVersionUID = 8857741164097610279L;
 	
+	private int id;
+	private String name;
 	private String email;
     private String password;
     private String role;
 
     public SecureUser(User user){
+    	this.id = user.getId();
+    	this.name = user.getName();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.role = user.getRole();
@@ -38,6 +42,16 @@ public class SecureUser extends User implements UserDetails {
     }
 
     @Override
+    public int getId() {
+		return this.id;
+	}
+
+    @Override
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
     public String getPassword() {
         return this.password;
     }
