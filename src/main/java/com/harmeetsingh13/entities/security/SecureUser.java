@@ -20,45 +20,35 @@ public class SecureUser extends User implements UserDetails {
 	 */
 	private static final long serialVersionUID = 8857741164097610279L;
 	
-	private int id;
-	private String name;
-	private String email;
-    private String password;
-    private String role;
-
     public SecureUser(User user){
-    	this.id = user.getId();
-    	this.name = user.getName();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.role = user.getRole();
+    	
+    	this.setId(user.getId());
+    	this.setName(user.getName());
+    	this.setEmail(user.getEmail());
+    	this.setSecret(user.getSecret());
+    	this.setRole(user.getRole());
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(this.role));
+        authorities.add(new SimpleGrantedAuthority(this.getRole()));
         return authorities;
     }
 
     @Override
-    public int getId() {
-		return this.id;
-	}
-
-    @Override
 	public String getName() {
-		return this.name;
+		return super.getName();
 	}
 
 	@Override
     public String getPassword() {
-        return this.password;
+        return this.getSecret();
     }
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.getEmail();
     }
 
     @Override

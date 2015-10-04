@@ -5,6 +5,7 @@ package com.harmeetsingh13.controller.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/section-one", method=RequestMethod.GET)
+	@PreAuthorize(value="@securityService.userHasPermissionForURL(authentication, '/section-one')")
 	public String sectionOne() {
 		LOG.info("In sectionOne Controller method");
 		
@@ -34,6 +36,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/section-two", method=RequestMethod.GET)
+	@PreAuthorize(value="@securityService.userHasPermissionForURL(authentication, '/section-two')")
 	public String sectionTwo() {
 		LOG.info("In sectionTwo Controller method");
 		

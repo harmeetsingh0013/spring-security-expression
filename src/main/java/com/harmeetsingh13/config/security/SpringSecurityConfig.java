@@ -1,26 +1,29 @@
 package com.harmeetsingh13.config.security;
 
 
-import com.harmeetsingh13.config.security.CustomSpringSecurityUserService;
-import com.harmeetsingh13.config.security.handlers.CustomAuthenticationSuccessHandler;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.harmeetsingh13.config.security.handlers.CustomAuthenticationSuccessHandler;
+
 /**
  * Created by Harmeet Singh(Taara) on 14/9/15.
  * @version 1.0
  */
 
-@EnableWebMvcSecurity
 @Configuration
+@EnableWebMvcSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 @ComponentScan(basePackages="com.harmeetsingh13.config.security")
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
@@ -36,6 +39,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+    	return super.authenticationManager();
     }
 
     @Override
