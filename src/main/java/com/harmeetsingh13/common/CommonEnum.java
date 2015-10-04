@@ -21,4 +21,17 @@ public class CommonEnum {
 			return this.permssion;
 		}
 	}
+	
+	public enum USER_ROLE{
+		USER("ROLE_USER"), ADMIN("ROLE_ADMIN");
+		
+		private String role;
+		private USER_ROLE(String role){
+			this.role = role;
+		}
+		
+		public String getRole(){
+			return this.role;
+		}
+	}
 }

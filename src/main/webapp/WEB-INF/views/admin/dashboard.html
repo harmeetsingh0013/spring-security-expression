@@ -4,7 +4,39 @@
     <section layout:fragment="content">
       <p>Hello <span th:text="${session.username}">Admin</span> To Your Dashboard</p>
       
-      
+      <form th:action="@{/admin/assign-persmissions}" method="POST">
+	      <table>
+	      	<thead>
+	      		<tr>
+	      			<th>Sr.No</th>
+	      			<th>Name</th>
+	      			<th>Selection</th>
+	      			<th>Access</th>
+	      		</tr>
+	      	</thead>
+	      	<tbody>
+	      		<tr th:each="user, status: ${users}">
+	      			<td th:text="${status.count}"></td>
+	      			<td th:text="${user.name}"></td>
+	      			<td>
+	      				<select name="urls">
+			                <option value="/section-one">Section ONE</option>
+			                <option value="/section-two">Section TWO</option>
+			                <option value="/section-three">Section THREE</option>
+			            </select>
+	      			</td>
+	      			<td>
+	      				<select name="permissions">
+	      					<option value="ACCESS">Access</option>
+			                <option value="DENIED">Denied</option>
+	      				</select>
+	      			</td>
+	      			<td><input type="hidden" name="userIds" th:value="${user.id}" /></td>
+	      		</tr>
+	      	</tbody>
+	      </table>
+	      <input type="submit" value="Assign Permssions" />
+      </form>
     </section>
   </body>
 </html>
