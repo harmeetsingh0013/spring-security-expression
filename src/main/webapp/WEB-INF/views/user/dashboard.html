@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
   <body>
     <section layout:fragment="content">
     	<p>Hello <span th:text="${session.username}">User</span> To Your Dashbord</p>
       	<br />
      	<ul>
-    		<li><a th:href="@{/user/section-one}">Section ONE</a></li>
-    		<li><a th:href="@{/user/section-two}">Section TWO</a></li>
-    		<li><a th:href="@{/user/section-three}">Section THREE</a></li>
+    		<li sec:authorize="@securityService.userHasPermissionForURL(authentication, '/section-one')"><a th:href="@{/user/section-one}">Section ONE</a></li>
+    		<li sec:authorize="@securityService.userHasPermissionForURL(authentication, '/section-two')"><a th:href="@{/user/section-two}">Section TWO</a></li>
+    		<li sec:authorize="@securityService.userHasPermissionForURL(authentication, '/section-three')"><a th:href="@{/user/section-three}">Section THREE</a></li>
    		</ul>
     </section>
     

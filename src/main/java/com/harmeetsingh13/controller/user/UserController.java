@@ -44,6 +44,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/section-three", method=RequestMethod.GET)
+	@PreAuthorize(value="@securityService.userHasPermissionForURL(authentication, '/section-three')")
 	public String sectionThree() {
 		LOG.info("In sectionThree Controller method");
 		

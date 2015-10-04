@@ -26,6 +26,7 @@ public class ThymeleafConfig {
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
         templateResolver.setOrder(1);
+        templateResolver.setCacheable(false);
         return templateResolver;
     }
 
@@ -45,6 +46,7 @@ public class ThymeleafConfig {
     public ThymeleafViewResolver thymeleafViewResolver(SpringTemplateEngine templateEngine) {
         ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
         thymeleafViewResolver.setTemplateEngine(templateEngine);
+        thymeleafViewResolver.setCache(false);
         return thymeleafViewResolver;
     }
 }

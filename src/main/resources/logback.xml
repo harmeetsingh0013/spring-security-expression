@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
-	<contextName>Spring ACL-Sample</contextName>
+	<contextName>Spring Expression-Sample</contextName>
 
 	<timestamp key="timeFormat" datePattern="yyyyMMdd'T'HHmmss" timeReference="contextBirth" />
 
-	<property resource="properties/logback-variables.properties" />
+	<property resource="properties/miscellaneous.properties" />
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
@@ -13,10 +13,10 @@
 	</appender>
 
 	<appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${file-path}/log</file>
+		<file>${logback.filepath}/log</file>
 		<append>true</append>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${file-path}/log-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<fileNamePattern>${logback.filepath}/log-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>100MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
