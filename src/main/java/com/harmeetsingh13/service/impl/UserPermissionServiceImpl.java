@@ -27,10 +27,22 @@ public class UserPermissionServiceImpl implements UserPermissionService{
 	private UserPermissionRepo userPermissionRepo;
 	
 	@Override
-	public void saveBulkUsersPermissions(List<UserPermission> permissions) {
+	public boolean saveBulkUsersPermissions(List<UserPermission> permissions) {
+		LOG.info("In saveBulkUsersPermissions service method");
+		try{
+			userPermissionRepo.save(permissions);
+			return true;
+		}catch(Exception ex) {
+			return false;
+		}
+		
+	}
+
+	@Override
+	public void deleteUserPermission(String permissionId) {
 		LOG.info("In saveBulkUsersPermissions service method");
 		
-		userPermissionRepo.save(permissions);
+		userPermissionRepo.delete(permissionId);
 	}
 
 }

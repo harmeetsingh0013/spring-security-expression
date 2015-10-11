@@ -1,8 +1,11 @@
 package com.harmeetsingh13.repo;
 
+import com.harmeetsingh13.dtos.UserPermissionsDto;
 import com.harmeetsingh13.entities.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,4 +19,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     public List<User> findByEmail(String email);
 	public List<User> findByRole(String role);
+	@Query(value="SELECT new com.harmeetsingh13.dtos.UserPermissionsDto(user.id, perm.id, user.name, user.email, perm.url, perm.permission) FROM "
+			+ "UserPermission AS perm RIGHT OUTER JOIN perm.user AS user WHERE user.role = :role")
+	public List<UserPermissionsDto> findAllUsersPermissionsByRole(@Param("role")String role);
 }

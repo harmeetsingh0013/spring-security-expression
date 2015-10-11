@@ -3,7 +3,33 @@
   <body>
     <section layout:fragment="content">
       <p>Hello <span th:text="${session.username}">Admin</span> To Your Dashboard</p>
-      
+      <br />
+      <p style="color: red;font-weight: bold;" th:if="${error != null}" th:text="${error}"></p>
+      <br />
+      <h3>Users Permission List</h3>
+      <table>
+	      	<thead>
+	      		<tr>
+	      			<th>User Id</th>
+	      			<th>Name</th>
+	      			<th>Email</th>
+	      			<th>URL</th>
+	      			<th>Permission</th>
+	      		</tr>
+	      	</thead>
+	      	<tbody>
+	      		<tr th:each="permission, status: ${permissions}">
+	      			<td th:text="${permission.userId}"></td>
+	      			<td th:text="${permission.name}"></td>
+	      			<td th:text="${permission.email}"></td>
+	      			<td th:text="${permission.url}"></td>
+	      			<td th:text="${permission.permission}"></td>
+	      			<td><a th:href="@{/admin/delete-permission(permissionId=${permission.permissionId})}">Delete Permission</a></td>
+	      		</tr>
+	      	</tbody>
+	      </table>
+	   <br />
+	   <h3>Assign Permissions To User</h3>
       <form th:action="@{/admin/assign-persmissions}" method="POST">
 	      <table>
 	      	<thead>

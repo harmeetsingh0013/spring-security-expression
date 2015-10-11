@@ -54,7 +54,7 @@ CREATE TABLE `users_permissions` (
   `user_id` bigint(20) NOT NULL,
   `url` varchar(300) NOT NULL,
   `permission` enum('ACCESS','DENIED') NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`user_id`,`url`),
   KEY `fk_users_permissions_1_idx` (`user_id`),
   CONSTRAINT `fk_users_permissions_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -66,7 +66,7 @@ CREATE TABLE `users_permissions` (
 
 LOCK TABLES `users_permissions` WRITE;
 /*!40000 ALTER TABLE `users_permissions` DISABLE KEYS */;
-INSERT INTO `users_permissions` VALUES ('31c7c103-14a8-4b0a-8531-433333dd65a8',1,'/section-one','ACCESS'),('be8cc57f-531c-4e5f-946b-1fe630962ef9',1,'/section-two','ACCESS');
+INSERT INTO `users_permissions` VALUES ('fa72d264-1662-46b9-8687-6f18d2ff4ff5',1,'/section-three','ACCESS'),('be8cc57f-531c-4e5f-946b-1fe630962ef9',1,'/section-two','ACCESS');
 /*!40000 ALTER TABLE `users_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -79,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-04 21:51:18
+-- Dump completed on 2015-10-11 15:35:01

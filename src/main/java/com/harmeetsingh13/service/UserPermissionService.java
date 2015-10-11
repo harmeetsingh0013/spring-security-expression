@@ -13,5 +13,6 @@ import com.harmeetsingh13.entities.security.UserPermission;
  */
 public interface UserPermissionService {
 
-	public void saveBulkUsersPermissions(List<UserPermission> permissions);
+	public boolean saveBulkUsersPermissions(List<UserPermission> permissions);
+	public void deleteUserPermission(String permissionId);
 }

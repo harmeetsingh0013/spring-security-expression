@@ -3,6 +3,7 @@ package com.harmeetsingh13.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.harmeetsingh13.dtos.UserPermissionsDto;
 import com.harmeetsingh13.entities.User;
 
 /**
@@ -14,4 +15,5 @@ public interface UserService {
 
 	public Optional<List<User>> findAllUsersByRole(String role);
 	public User findUserById(long userId);
+	public List<UserPermissionsDto> findAllUsersPermissionsByRole(String role);
 }

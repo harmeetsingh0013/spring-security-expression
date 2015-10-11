@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.harmeetsingh13.dtos.UserPermissionsDto;
 import com.harmeetsingh13.entities.User;
 import com.harmeetsingh13.repo.UserRepo;
 import com.harmeetsingh13.service.UserService;
@@ -38,5 +39,12 @@ public class UserServiceImpl implements UserService{
 		LOG.info("In findUserById service method");
 		
 		return userRepo.findOne(userId);
+	}
+
+	@Override
+	public List<UserPermissionsDto> findAllUsersPermissionsByRole(String role) {
+		LOG.info("In findAllUsersPermissionsByRole service method");
+		
+		return userRepo.findAllUsersPermissionsByRole(role);
 	}
 }

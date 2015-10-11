@@ -17,7 +17,7 @@ import com.harmeetsingh13.entities.security.UserPermission;
  */
 
 @Repository
-public interface UserPermissionRepo extends JpaRepository<UserPermission, Long>{
+public interface UserPermissionRepo extends JpaRepository<UserPermission, String>{
 
 	public UserPermission findByUserAndUrl(User user, String url);
 	public List<UserPermission> findByUserAndUrlAndPermission(User user, String url, String permission);
